@@ -1,0 +1,43 @@
+
+EXPLORATORY DATA ANALYSIS SUMMARY REPORT
+Generated: 2025-11-23 18:39:05
+
+---
+
+DATASET OVERVIEW:
+- Total Samples: 7,861
+- Total Features: 6
+- Fault Types: 6
+- Missing Values: 0
+- Duplicate Rows: 0
+
+FAULT DISTRIBUTION:
+- Normal    : 2,365 samples (30.09%)
+- ABG       : 1,134 samples (14.43%)
+- ABCG      : 1,133 samples (14.41%)
+- AG        : 1,129 samples (14.36%)
+- ABC       : 1,096 samples (13.94%)
+- BC        : 1,004 samples (12.77%)
+
+CLASS BALANCE:
+- Normal Samples: 2,365 (30.09%)
+- Fault Samples: 5,496 (69.91%)
+- Imbalance Ratio: 2.32:1
+
+FEATURE RANGES:
+Current Features (Amperes):
+- Ia: [ -883.54,   885.74], Mean:    13.72
+- Ib: [ -900.53,   889.87], Mean:   -44.85
+- Ic: [ -883.36,   901.27], Mean:    34.39
+
+Voltage Features (per unit):
+- Va: [ -0.621,   0.595], Mean:  -0.008
+- Vb: [ -0.608,   0.628], Mean:   0.001
+- Vc: [ -0.613,   0.600], Mean:   0.007
+
+KEY FINDINGS:
+1. Dataset is clean with no missing values or duplicates
+2. 6 distinct fault types with relatively balanced distribution
+3. High variability in current measurements during faults
+4. Voltage features show clear fault signatures
+5. Features demonstrate good discriminative power
