@@ -243,22 +243,24 @@ Total Features: 10 columns
 
 ## 6. STEP-BY-STEP ROADMAP
 
-### Phase 1: Understanding
+### Phase 1: Understanding - COMPLETED
 
 Tasks:
 
-- [x] Understand the problem domain
-- [x] Study power system architecture
-- [x] Analyze dataset structure
-- [ ] Read related research papers
-- [ ] Understand evaluation metrics
-- [ ] Document your understanding
+- Understand the problem domain
+- Study power system architecture
+- Analyze dataset structure
+- Read related research papers
+- Understand evaluation metrics
+- Document your understanding
 
 **Deliverable:** Comprehensive project documentation
 
+**Status:** Complete - documented in project notes
+
 ---
 
-### Phase 2: Data Exploration & Analysis
+### Phase 2: Data Exploration & Analysis - COMPLETED
 
 Tasks:
 
@@ -278,9 +280,11 @@ Tasks:
 
 **Deliverable:** EDA report with visualizations
 
+**Status:** Complete - Notebook: 01_EDA.ipynb
+
 ---
 
-### Phase 3: Data Preprocessing
+### Phase 3: Data Preprocessing - COMPLETED
 
 Tasks:
 
@@ -289,166 +293,201 @@ Tasks:
    - Check for inconsistencies
    - Handle any anomalies
 2. **Feature Scaling**
-   - Normalize/Standardize features
-   - Try different scaling methods
-   - Compare impact on models
+   - Normalize/Standardize features (MinMaxScaler)
+   - Applied to all 6 features (Ia, Ib, Ic, Va, Vb, Vc)
 3. **Train-Test Split**
-   - Split data (e.g., 80-20 or 70-30)
-   - Ensure stratified split
-   - Create validation set
-4. **Class Imbalance Handling** (if needed)
-   - SMOTE (Synthetic Minority Over-sampling)
-   - Class weights
-   - Undersampling techniques
-
-**Deliverable:** Preprocessed, clean dataset ready for modeling
-
----
-
-### Phase 4: Feature Engineering
-
-Tasks:
-
-1. **Domain-Based Features**
-   - Zero-sequence current: I0 = (Ia + Ib + Ic) / 3
-   - Positive-sequence current
-   - Negative-sequence current
-   - Voltage-current interactions
-   - Power calculations
-2. **Statistical Features**
-   - Mean, std, min, max of currents/voltages
-   - Rate of change
-   - Peak values
-3. **Feature Selection**
-   - Remove redundant features
-   - Identify top features
-   - Use techniques like:
-     - Correlation analysis
-     - Mutual information
-     - Feature importance from tree models
-
-**Deliverable:** Enhanced feature set with justifications
-
----
-
-### Phase 5: Model Selection & Training
-
-Tasks:
-
-1. **Baseline Models**
+   - 80-20 stratified split
+   - Ensured balanced class distribution
+4. **Baseline Model Validation**
    - Logistic Regression
-   - K-Nearest Neighbors
-   - Decision Trees
-   - Establish baseline performance
-2. **Advanced Models**
+   - Decision Tree
    - Random Forest
-   - Support Vector Machine (SVM)
+   - Verified preprocessing effectiveness
+5. **Class Imbalance Handling** (deferred)
+   - Imbalance ratio: 2.35:1 (manageable)
+   - SMOTE reserved for Phase 5/7 if needed
+
+**Deliverable:** Preprocessed dataset + baseline model benchmarks
+
+**Status:** Complete - Notebook: 02_Preprocessing.ipynb
+
+**Note:** Baseline model training added in this phase to validate preprocessing steps and establish performance benchmarks.
+
+---
+
+### Phase 4: Feature Engineering - NEXT
+
+Tasks:
+
+1. **Basic Feature Engineering**
+   - Polynomial features (degree 2)
+   - Interaction terms between features
+2. **Domain-Based Features**
+   - Zero-sequence current: I0 = (Ia + Ib + Ic) / 3
+   - Zero-sequence voltage: V0 = (Va + Vb + Vc) / 3
+   - Phase angle differences (approximated)
+   - Total Harmonic Distortion (THD) - approximation
+   - Voltage-current ratios (V/I for each phase)
+   - Voltage-current interactions
+3. **Model Training with New Features**
+   - Retrain baseline models with engineered features
+   - Compare performance: basic vs engineered features
+   - Evaluate which features improve accuracy
+
+**Deliverable:** Enhanced feature set with performance comparison
+
+---
+
+### Phase 5: Advanced Model Selection & Training
+
+Tasks:
+
+1. **Advanced Tree-Based Models**
    - XGBoost
    - LightGBM
    - CatBoost
-3. **Deep Learning** (Optional/Advanced)
-   - Neural Networks
-   - CNN (if treating as time-series)
-   - LSTM (if sequence data)
-4. **Training Strategy**
-   - Cross-validation (k-fold)
-   - Hyperparameter tuning
-   - Grid search or Random search
-   - Prevent overfitting
+   - Gradient Boosting
+   - AdaBoost
+2. **Other Advanced Models**
+   - Support Vector Machine (SVM)
+   - K-Nearest Neighbors
+   - Neural Networks (MLPClassifier)
+   - Naive Bayes
+3. **Training Strategy**
+   - 5-fold stratified cross-validation
+   - Track both CV and test performance
+   - Compare all models systematically
+4. **Class Imbalance Handling** (if needed)
+   - Apply SMOTE if models struggle with minority classes
+   - Compare performance with/without SMOTE
+   - Use SMOTE only on training data
 
-**Deliverable:** Trained models with performance metrics
+**Deliverable:** Comprehensive model comparison with all algorithms
 
 ---
 
-### Phase 6: Model Evaluation
+### Phase 6: Model Evaluation & Analysis
 
 Tasks:
 
 1. **Performance Metrics**
    - Accuracy, Precision, Recall, F1-Score
-   - Confusion matrix
-   - ROC curves and AUC
-   - Per-class performance
+   - Confusion matrices for top models
+   - Per-class performance analysis
 2. **Model Comparison**
-   - Compare all models
-   - Identify best performer
-   - Analyze trade-offs
+   - Rank models by test accuracy
+   - Identify top 3 performers
+   - Analyze trade-offs (accuracy vs speed)
 3. **Error Analysis**
-   - Which faults are confused?
-   - False positives vs false negatives
-   - Failure case analysis
+   - Which fault types are confused?
+   - Analyze misclassifications
+   - Focus on challenging fault distinctions
 4. **Feature Importance**
-   - Which features matter most?
-   - Validate with domain knowledge
-   - Create interpretability plots
+   - Extract feature importance from best models
+   - Identify top 10 most important features
+   - Validate against domain knowledge
 
-**Deliverable:** Comprehensive evaluation report
+**Deliverable:** Comprehensive evaluation report with insights
 
 ---
 
-### Phase 7: Model Optimization
+### Phase 7: Model Optimization & Refinement
 
 Tasks:
 
 1. **Hyperparameter Tuning**
-   - Fine-tune best model
-   - Bayesian optimization
-   - Ensemble methods
-2. **Architecture Modifications**
-   - Modify network architecture
-   - Try different algorithms
-   - Novel feature combinations
-   - Custom loss functions
-3. **Performance vs Efficiency**
-   - Model compression
-   - Reduce inference time
-   - Balance accuracy and speed
+   - GridSearchCV on top 2-3 models
+   - Focus on Decision Tree and Random Forest parameters
+   - Use SMOTE in pipeline if beneficial
+2. **Advanced Feature Engineering** (if needed)
+   - Revisit challenging fault types
+   - Add more domain-specific features
+   - Feature selection to reduce complexity
+3. **Build Simplified Model** (optional)
+   - Train model with only top 5-10 features
+   - Compare performance vs full model
+   - Evaluate model interpretability
+4. **Deep Learning** (optional/advanced)
+   - Neural network with TensorFlow/Keras
+   - Architecture: Dense layers with dropout
+   - Compare with traditional ML models
 
-**Deliverable:** Optimized final model
+**Deliverable:** Optimized final model(s)
 
 ---
 
-### Phase 8: Validation & Testing
+### Phase 8: Final Validation & Testing
 
 Tasks:
 
 1. **Robust Testing**
-   - Test on hold-out set
-   - Cross-validation results
-   - Stress testing
-2. **Sensitivity Analysis**
-   - How robust is model to noise?
-   - Performance under edge cases
-   - Confidence intervals
-3. **Real-World Simulation**
-   - Create realistic test scenarios
-   - Time-series validation (if applicable)
+   - Final evaluation on test set
+   - Cross-validation stability check
+   - Verify no overfitting
+2. **Model Interpretation**
+   - Feature importance visualization
+   - Decision boundary analysis (if applicable)
+   - SHAP values (optional/advanced)
+3. **Final Model Selection**
+   - Choose best model based on:
+     - Test accuracy
+     - Generalization (CV performance)
+     - Interpretability
+     - Computational efficiency
+4. **Model Persistence**
+   - Save final model
+   - Save all preprocessing artifacts
+   - Document model specifications
 
-**Deliverable:** Validation report
+**Deliverable:** Final validated model ready for deployment
 
 ---
 
-### Phase 9: Documentation & Deployment
+### Phase 9: Documentation & Presentation
 
 Tasks:
 
 1. **Technical Documentation**
-
-   - Model architecture
-   - Training procedure
-   - Hyperparameters
-   - API documentation
-
+   - Complete methodology write-up
+   - Results summary
+   - Model architecture details
+   - Feature engineering rationale
+   - Performance metrics
 2. **Code Repository**
-   - Clean, commented code
-   - README with instructions
-   - Reproducible results
-3. **Presentation**
-   - PPT for defense
-   - Demo preparation
-   - Q&A preparation
+   - Clean, well-commented notebooks
+   - Organized folder structure
+   - README with setup instructions
+   - Requirements.txt
+3. **Presentation Materials**
+   - Project report/thesis chapter
+   - Presentation slides
+   - Key visualizations and results
+   - Demo preparation (if applicable)
+
+**Deliverable:** Complete project documentation
 
 ---
+
+## MODIFIED WORKFLOW NOTES
+
+**Key Changes from Original Plan:**
+
+1. **Phase 3 Enhancement**: Added baseline model training to validate preprocessing effectiveness and establish early benchmarks
+
+2. **Phase 4 Clarity**: Split into basic (polynomial) and domain-based feature engineering with clear deliverables
+
+3. **Phase 5 Refinement**: Focused on advanced models since baselines are already established
+
+4. **SMOTE Strategy**: Moved from Phase 3 to Phase 5/7 - only apply if needed after initial model testing
+
+5. **Incremental Validation**: Each phase now validates previous work before proceeding
+
+**This approach:**
+
+- Provides validation checkpoints at each step
+- Avoids over-engineering early in the process
+- Builds incrementally with clear benchmarks
+- Allows for informed decisions based on results from each phase
 
 ## 7. TECHNICAL DETAILS
 

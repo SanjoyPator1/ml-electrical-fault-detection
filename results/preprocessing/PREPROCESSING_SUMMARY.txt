@@ -1,0 +1,63 @@
+
+--------------------------------------------------------------------------------
+PHASE 3: PREPROCESSING & BASELINE MODELS - SUMMARY
+--------------------------------------------------------------------------------
+
+1. DATA PREPARATION
+   - Original dataset: 7861 samples, 6 features
+   - Fault types: 6 classes
+   - Class imbalance ratio: 2.36:1
+
+2. PREPROCESSING STEPS COMPLETED
+   - Feature scaling: MinMaxScaler [0, 1]
+   - Label encoding: 6 classes
+   - Train-test split: 80-20 stratified split
+   - Training samples: 6288
+   - Test samples: 1573
+
+3. BASELINE MODEL RESULTS
+
+   Logistic Regression:
+     - CV Accuracy: 0.3381 ± 0.0103
+     - Test Accuracy: 0.3458
+
+   Decision Tree:
+     - CV Accuracy: 0.8631 ± 0.0072
+     - Test Accuracy: 0.8856
+
+   Random Forest:
+     - CV Accuracy: 0.8599 ± 0.0054
+     - Test Accuracy: 0.8798
+
+4. BEST BASELINE MODEL
+   - Model: Decision Tree
+   - Test Accuracy: 0.8856
+
+5. KEY INSIGHTS
+   - Tree-based models (Decision Tree, Random Forest) perform well with basic features
+   - Logistic Regression limited by linear decision boundaries
+   - Three-Phase fault types show confusion (expected behavior)
+   - Preprocessing pipeline validated and working correctly
+
+6. FILES GENERATED
+   Preprocessed Data:
+     - ../data/processed/X_train.npy
+     - ../data/processed/X_test.npy
+     - ../data/processed/y_train.npy
+     - ../data/processed/y_test.npy
+
+   Models:
+     - ../models/minmax_scaler.pkl
+     - ../models/label_encoder.pkl
+     - ../models/baseline_*.pkl (3 models)
+
+   Results:
+     - 6 visualization plots
+     - 3 metric CSV files
+
+--------------------------------------------------------------------------------
+Preprocessing completed successfully
+--------------------------------------------------------------------------------
+
+
+Generated on: 2025-12-14 21:04:23
