@@ -1,0 +1,48 @@
+
+FEATURE ENGINEERING RESULTS
+Generated: 2025-12-27 18:57:45
+------------------------------------------------------------
+
+BASELINE PERFORMANCE (Phase 3 - 6 original features):
+- Logistic Regression: 0.3458 (34.58%)
+- Decision Tree:       0.8856 (88.56%)
+- Random Forest:       0.8798 (87.98%)
+
+DOMAIN FEATURES PERFORMANCE (29 features):
+- Logistic Regression: 0.7298 (72.98%) [+38.40%]
+- Decision Tree:       0.9822 (98.22%) [+9.66%]
+- Random Forest:       0.9943 (99.43%) [+11.45%]
+
+POLYNOMIAL FEATURES PERFORMANCE (27 features):
+- Logistic Regression: 0.7438 (74.38%) [+39.80%]
+- Decision Tree:       0.9027 (90.27%) [+1.71%]
+- Random Forest:       0.8900 (89.00%) [+1.02%]
+
+BEST OVERALL MODEL:
+- Model: Random Forest
+- Feature Set: Domain Features
+- Test Accuracy: 0.9943 (99.43%)
+- Improvement over baseline: +11.45%
+
+TARGET ACHIEVEMENT:
+- Target Accuracy: 95.00%
+- Best Achieved: 99.43%
+- Status: TARGET MET!
+
+ENGINEERED FEATURES CREATED:
+- Zero-sequence current (I0) and voltage (V0)
+- Positive-sequence approximations (I1, V1)
+- Phase impedances (Z_a, Z_b, Z_c)
+- Total magnitudes (I_total, V_total)
+- Imbalance indicators (I_imbalance, V_imbalance)
+- Power approximations (P_a, P_b, P_c, P_total)
+- Current and voltage sums (I_sum, V_sum)
+- Phase differences (I_diff_ab, I_diff_bc, I_diff_ca, V_diff_ab, V_diff_bc, V_diff_ca)
+
+NEXT STEPS:
+- Phase 6: Hyperparameter tuning
+- Analyze feature importance in detail
+- Consider feature selection for simplification
+- Test ensemble methods
+
+------------------------------------------------------------

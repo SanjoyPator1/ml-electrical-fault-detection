@@ -1,0 +1,10 @@
+Model,Feature Set,Test Accuracy,Improvement
+Logistic Regression,Baseline (6 features),0.3458,0.0
+Logistic Regression,Domain (29 features),0.729815638906548,0.384015638906548
+Logistic Regression,Polynomial (27 features),0.743801652892562,0.39800165289256195
+Decision Tree,Baseline (6 features),0.8856,0.0
+Decision Tree,Domain (29 features),0.9821996185632549,0.09659961856325483
+Decision Tree,Polynomial (27 features),0.9027336300063573,0.01713363000635726
+Random Forest,Baseline (6 features),0.8798,0.0
+Random Forest,Domain (29 features),0.9942784488239034,0.11447844882390334
+Random Forest,Polynomial (27 features),0.8900190718372537,0.01021907183725368
