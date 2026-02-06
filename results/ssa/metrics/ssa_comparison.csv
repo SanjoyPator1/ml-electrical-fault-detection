@@ -1,0 +1,5 @@
+Model,Test Accuracy,Improvement
+LightGBM (Baseline),0.9974570883661793,0.0
+LightGBM (SSA-Optimized),0.9980928162746344,0.06357279084551193
+Random Forest (Baseline),0.9942784488239034,0.0
+Random Forest (SSA-Optimized),0.9936427209154481,-0.06357279084552303
